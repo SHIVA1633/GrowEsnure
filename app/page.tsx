@@ -106,17 +106,17 @@ const services = [
 export default function Home() {
   return (
     <div className="space-y-12">
-      <section className="text-center bg-gradient-to-r from-blue-100 to-blue-200 p-8 rounded-lg shadow-lg">
-        <h1 className="text-4xl font-bold mb-4 text-gray-800">Welcome to Futuredge Solutions</h1>
-        <p className="text-xl mb-8 text-gray-700">
+      <section className="text-center bg-gradient-to-r from-blue-100 to-blue-200 p-2 rounded-lg shadow-lg">
+        <h2 className="text-lg font-semibold mb-4 text-gray-800">Welcome to Futuredge Solutions</h2>
+        <p className="text-md mb-8 text-gray-700">
           Discover how Futuredge Solutions turns financial confusion into clarity and confidence
         </p>
       </section>
 
       <section className="text-center bg-gradient-to-r from-amber-100 to-yellow-200 p-6 rounded-lg shadow-lg">
-        <blockquote className="text-2xl italic font-semibold text-gray-800">
+        <blockquote className="text-md italic font-semibold text-gray-800">
           " If you do what everyone else does, you will get what everyone else gets."
-          <footer className="text-lg mt-2">― Stephen Richards</footer>
+          <footer className="text-md mt-2">― Stephen Richards</footer>
         </blockquote>
       </section>
 
@@ -146,7 +146,7 @@ export default function Home() {
       </section>
 
       <section className="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-semibold mb-6 text-center">How Futuredge Solutions Protects Your Wealth</h2>
+        <h2 className="text-lg md:text-3xl font-semibold mb-6 text-center">How Futuredge Solutions Protects Your Wealth</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
             <div key={index} className={`${service.color} p-6 rounded-lg shadow-md`}>
@@ -170,8 +170,8 @@ export default function Home() {
       </section>
 
       <section className="text-center bg-gradient-to-r from-teal-100 to-green-100 p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-semibold mb-4">Ready to Secure Your Financial Future?</h2>
-        <p className="text-lg mb-8">
+        <h2 className="text-lg font-semibold mb-4">Ready to Secure Your Financial Future?</h2>
+        <p className="text-md mb-8">
           Join thousands of smart investors who trust Futuredge Solutions to navigate the complex world of finance.
         </p>
         <div className="max-w-md mx-auto">
@@ -199,4 +199,3 @@ export default function Home() {
     </div>
   )
 }
-
