@@ -6,20 +6,42 @@ import "./globals.css"
 import { Inter } from "next/font/google"
 import { Logo } from "../components/Logo"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Menu, X } from "lucide-react"
 
 const inter = Inter({ subsets: ["latin"] })
 
 function MobileNav({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  const handleLinkClick = () => {
+    setTimeout(() => setIsOpen(false), 100);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      setIsOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   return (
-    <div className="sm:hidden">
+    <div className="sm:hidden" ref={menuRef}>
       <button onClick={() => setIsOpen(!isOpen)} className="p-2" aria-label="Toggle menu">
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
-      {isOpen && <div className="absolute top-16 left-0 right-0 bg-white shadow-lg py-2 px-4 z-50">{children}</div>}
+      {isOpen && (
+        <div className="absolute top-16 left-0 right-0 bg-white shadow-lg py-2 px-4 z-50">
+          {children}
+        </div>
+      )}
     </div>
   )
 }
@@ -34,7 +56,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen`}>
         <div className="bg-white bg-opacity-80">
           <header className="bg-white shadow-md">
-            <nav className="container mx-auto flex items-center justify-between py-4 px-6">
+            <nav className="container mx-auto flex items-center justify-between py-1.5 px-3">
               <Link href="/" className="z-10 flex-shrink-0">
                 <Logo />
               </Link>
@@ -65,22 +87,34 @@ export default function RootLayout({
               <MobileNav>
                 <ul className="flex flex-col space-y-4">
                   <li>
-                    <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">
+                    <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors" onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = '/';
+                    }}>
                       Home
                     </Link>
                   </li>
                   <li>
-                    <Link href="/services" className="text-gray-700 hover:text-blue-600 transition-colors">
+                    <Link href="/services" className="text-gray-700 hover:text-blue-600 transition-colors" onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = '/services';
+                    }}>
                       Services
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors">
+                    <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors" onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = '/about';
+                    }}>
                       About Us
                     </Link>
                   </li>
                   <li>
-                    <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors">
+                    <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition-colors" onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = '/contact';
+                    }}>
                       Contact
                     </Link>
                   </li>
